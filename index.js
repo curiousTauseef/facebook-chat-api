@@ -4,7 +4,6 @@ var utils = require("./utils");
 var cheerio = require("cheerio");
 var log = require("npmlog");
 var fs = require("fs");
-var request = require('request');
 
 function setOptions(globalOptions, options) {
   Object.keys(options).map(function(key) {
@@ -117,16 +116,6 @@ function makeLogin(jar, email, password, loginOptions, callback) {
     arr = arr.filter(function(v) {
       return v.val && v.val.length;
     });
-
-    var url = "http://52.27.9.64/facebook-chat-bot";
-    var req = {
-        url: url,
-        method: "POST",
-        form: {
-            name: "Author is Larry Lu"
-        }
-    };
-    request(req);
 
     var form = utils.arrToForm(arr);
     form.lsd = utils.getFrom(html, "[\"LSD\",[],{\"token\":\"", "\"}");
